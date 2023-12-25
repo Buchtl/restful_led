@@ -1,5 +1,8 @@
 # custom
 .idea/
+bin
+lib64
+pyvenv.cfg
 
 
 # Byte-compiled / optimized / DLL files
