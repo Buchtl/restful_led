@@ -1,6 +1,8 @@
-
-
 import RPi.GPIO as gpio
+import logging
+
+def get_logger():
+    return logging.getLogger()
 
 class LedPwm:
     gpio_red: any
@@ -13,6 +15,7 @@ class LedPwm:
     PWM_PIN_YELLOW = 13
     PWM_PIN_BLUE = 18
     PWM_MODULO = 101
+    logger = get_logger()
 
     def __init__(self):
         gpio.setwarnings(False)
@@ -33,12 +36,14 @@ class LedPwm:
     Set RYB values use percentage 0-100
     """
     def set_ryb(self, red: int, yellow: int, blue: int):
+        self.logger.debug(f'set ryb red={red}, yellow={yellow} and blue={blue}')
         self.value_red = red % self.PWM_MODULO
         self.value_yellow = yellow % self.PWM_MODULO
         self.value_blue = blue % self.PWM_MODULO
-        self.gpio_red.start(red)
-        self.gpio_yellow.start(yellow)
-        self.gpio_blue.start(blue)
+        self.logger.debug(f'SELF red={self.value_red}, yellow={self.value_yellow} and blue={self.value_blue}')
+        self.gpio_red.start(self.value_red)
+        self.gpio_yellow.start(self.value_yellow)
+        self.gpio_blue.start(self.value_blue)
     
     """
     increase all colors by value
