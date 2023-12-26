@@ -12,8 +12,7 @@ class LedPwm:
     PWM_PIN_RED = 12
     PWM_PIN_YELLOW = 13
     PWM_PIN_BLUE = 18
-
-
+    PWM_MODULO = 101
 
     def __init__(self):
         gpio.setwarnings(False)
@@ -34,9 +33,9 @@ class LedPwm:
     Set RYB values use percentage 0-100
     """
     def set_ryb(self, red: int, yellow: int, blue: int):
-        self.value_red = red
-        self.value_yellow = yellow
-        self.value_blue = blue
+        self.value_red = red % self.PWM_MODULO
+        self.value_yellow = yellow % self.PWM_MODULO
+        self.value_blue = blue % self.PWM_MODULO
         self.gpio_red.start(red)
         self.gpio_yellow.start(yellow)
         self.gpio_blue.start(blue)
@@ -45,9 +44,9 @@ class LedPwm:
     increase all colors by value
     """
     def increase_all_by(self, value: int):
-        self.value_red += value
-        self.value_yellow += value
-        self.value_blue += value
+        self.value_red = (self.value_red + value) % self.PWM_MODULO
+        self.value_yellow = (self.value_yellow + value) % self.PWM_MODULO
+        self.value_blue = (self.value_blue + value) % self.PWM_MODULO
         self.set_ryb(red=self.value_red, yellow=self.value_yellow, blue=self.value_blue)
     
     def cleanup(self):
