@@ -3,16 +3,9 @@ import time
 
 if __name__ == "__main__":
     led = LedPwm()
-    led.set_red(red=1)
+    led.set_rgb(red=0, yellow=0, blue=0)
     time.sleep(1)
-    led.set_red(red=20)
-    time.sleep(1)
-    led.set_red(red=40)
-    time.sleep(1)
-    led.set_red(red=60)
-    time.sleep(1)
-    led.set_red(red=80)
-    time.sleep(1)
-    led.set_red(red=100)
-    time.sleep(1)
+    for x in range(0,4):
+        led.increase_all_by(20)
+        time.sleep(1)
     led.cleanup()
