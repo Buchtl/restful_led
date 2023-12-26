@@ -16,6 +16,7 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
+
 @app.route('/ryb')
 def process_ryb():
     red = request.args.get('red', "0")
@@ -26,7 +27,7 @@ def process_ryb():
 
     try:
         logger.debug(parameter_string)
-        led.set_ryb(red = int(red), yellow = int(yellow), blue=int(blue))
+        led.set_ryb(red=int(red), yellow=int(yellow), blue=int(blue))
         response = make_response("sucess: " + parameter_string)
         response.status_code = 200
         return response
@@ -35,13 +36,14 @@ def process_ryb():
         response.status_code = 400
         return response
 
+
 if __name__ == "__main__":
     led = LedPwm()
     led.set_ryb(red=0, yellow=0, blue=0)
-    #time.sleep(1)
-    #for x in range(0,4):
+    # time.sleep(1)
+    # for x in range(0,4):
     #    led.increase_all_by(20)
     #    time.sleep(1)
-    #led.cleanup()
+    # led.cleanup()
 
     app.run(host='0.0.0.0', port=8080)

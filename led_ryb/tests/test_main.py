@@ -1,6 +1,5 @@
-
 import unittest
-import led_rgb.src.main as subject
+import led_ryb.src.main as subject
 
 
 class TestStringMethods(unittest.TestCase):
