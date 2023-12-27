@@ -1,10 +1,12 @@
 from led_pwm import LedPwm
-import time
 from flask import Flask, request, make_response
+from flask_cors import CORS, cross_origin
 import sys
 import logging
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 led = any
 
