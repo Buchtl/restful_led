@@ -20,6 +20,7 @@ logger.addHandler(handler)
 
 
 @app.route('/ryb')
+@cross_origin()
 def process_ryb():
     red = request.args.get('red', "0")
     yellow = request.args.get('yellow', "0")
