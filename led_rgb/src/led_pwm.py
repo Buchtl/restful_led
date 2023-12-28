@@ -6,6 +6,17 @@ def get_logger():
     return logging.getLogger()
 
 
+"""
+convert int in Range 0..255 to hex without leading "0x"
+"""
+
+
+def duty_cycle_to_hex(dc: int):
+    multiplier = 256 / 100
+    hex_value = hex(int(multiplier * dc)).replace("0x", "")
+    return hex_value if (len(str(hex_value)) < 3) else "FF"
+
+
 class LedPwm:
     gpio_red: any
     gpio_blue: any
@@ -38,7 +49,7 @@ class LedPwm:
     Set RYB values use percentage 0-100
     """
 
-    #def set_ryb(self, red: int, blue: int, green: int):
+    # def set_ryb(self, red: int, blue: int, green: int):
     #    self.logger.debug(f'set ryb red={red}, yellow={yellow} and blue={blue}')
     #    self.value_red = red % self.PWM_MODULO
     #    self.value_blue = blue % self.PWM_MODULO
@@ -64,14 +75,24 @@ class LedPwm:
         self.gpio_green.start(self.value_green)
 
     """
+    get approx RGB-values that are currently mapped to the gpio pins with leading "0x"
+    """
+
+    def get_rgb(self):
+        dc_red = duty_cycle_to_hex(self.gpio_red.get_duty_cycle())
+        dc_blue = duty_cycle_to_hex(self.gpio_blue.get_duty_cycle())
+        dc_green = duty_cycle_to_hex(self.gpio_green.get_duty_cycle())
+        return "0x" + dc_red + dc_blue + dc_green
+
+    """
     increase all colors by value
     """
 
     def increase_all_by(self, value: int):
         self.value_red = (self.value_red + value) % self.PWM_MODULO
-        self.value_blue= (self.value_blue + value) % self.PWM_MODULO
+        self.value_blue = (self.value_blue + value) % self.PWM_MODULO
         self.value_green = (self.value_green + value) % self.PWM_MODULO
-        self.set_ryb(red=self.value_red, blue=self.value_blue, green=self.value_green)
+        # self.set_ryb(red=self.value_red, blue=self.value_blue, green=self.value_green)
 
     def cleanup(self):
         self.gpio_red.stop()

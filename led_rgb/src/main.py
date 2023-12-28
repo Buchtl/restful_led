@@ -19,13 +19,13 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
-@app.route('/rgb')
+@app.route('/rgb/<rgb>')
 @cross_origin()
-def process_rgb():
+def process_rgb(rgb):
     # red = request.args.get('red', "0")
     # blue = request.args.get('blue', "0")
     # green = request.args.get('green', "0")
-    rgb = request.args.get('rgb', "000000")
+    #rgb = request.args.get('rgb', "000000")
     while len(rgb) < 6:
         rgb = "0" + rgb
 
@@ -44,10 +44,18 @@ def process_rgb():
         return response
 
 
+@app.route('/rgb')
+@cross_origin()
+def get_rgb():
+    response = make_response(led.get_rgb())
+    response.status_code = 200
+    return response
+
+
 if __name__ == "__main__":
     led = LedPwm()
     led.set_rgb("FFFFFF")
-    #led.set_ryb(red=0, blue=0, green=0)
+    # led.set_ryb(red=0, blue=0, green=0)
     # time.sleep(1)
     # for x in range(0,4):
     #    led.increase_all_by(20)
