@@ -25,7 +25,7 @@ def process_rgb():
     # red = request.args.get('red', "0")
     # blue = request.args.get('blue', "0")
     # green = request.args.get('green', "0")
-    rgb = request.args.get('rgb', "#000000")
+    rgb = "0x" + request.args.get('rgb', "000000")
 
     parameter_string = (f'given red={red}, blue={blue} and green={green}')
 
