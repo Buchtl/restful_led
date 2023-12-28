@@ -53,7 +53,8 @@ class LedPwm:
     """
 
     def set_rgb(self, rgb: str):
-        self.logger.debug(f'set rgb {rgb}')
+        v = "0x" + rgb[0:2]
+        self.logger.debug(f'set rgb {rgb} and {v}')
         self.value_red = int("0x" + rgb[0:2], 16) % self.PWM_MODULO
         self.value_blue = int("0x" + rgb[2:4], 16) % self.PWM_MODULO
         self.value_green = int("0x" + rgb[4:6], 16) % self.PWM_MODULO
