@@ -26,6 +26,8 @@ def process_rgb():
     # blue = request.args.get('blue', "0")
     # green = request.args.get('green', "0")
     rgb = request.args.get('rgb', "000000")
+    while len(rgb) < 6:
+        rgb = "0" + rgb
 
     parameter_string = f'given rgb={rgb}'
 
