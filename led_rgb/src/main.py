@@ -23,14 +23,14 @@ logger.addHandler(handler)
 @cross_origin()
 def process_ryb():
     red = request.args.get('red', "0")
-    yellow = request.args.get('yellow', "0")
     blue = request.args.get('blue', "0")
+    green = request.args.get('green', "0")
 
-    parameter_string = (f'given red={red}, yellow={yellow} and blue={blue}')
+    parameter_string = (f'given red={red}, blue={blue} and green={green}')
 
     try:
         logger.debug(parameter_string)
-        led.set_ryb(red=int(red), yellow=int(yellow), blue=int(blue))
+        led.set_ryb(red=int(red), blue=int(blue), green=int(green))
         response = make_response("sucess: " + parameter_string)
         response.status_code = 200
         return response
@@ -42,7 +42,7 @@ def process_ryb():
 
 if __name__ == "__main__":
     led = LedPwm()
-    led.set_ryb(red=0, yellow=0, blue=0)
+    led.set_ryb(red=0, blue=0, green=0)
     # time.sleep(1)
     # for x in range(0,4):
     #    led.increase_all_by(20)
