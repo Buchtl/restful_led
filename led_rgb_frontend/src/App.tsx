@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ColorPicker/>
+        <ColorPicker initial_rgb="000000"/>
       </header>
     </div>
   );
