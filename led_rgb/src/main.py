@@ -19,18 +19,20 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
-@app.route('/ryb')
+@app.route('/rgb')
 @cross_origin()
-def process_ryb():
-    red = request.args.get('red', "0")
-    blue = request.args.get('blue', "0")
-    green = request.args.get('green', "0")
+def process_rgb():
+    # red = request.args.get('red', "0")
+    # blue = request.args.get('blue', "0")
+    # green = request.args.get('green', "0")
+    rgb = request.args.get('rgb', "#000000")
 
     parameter_string = (f'given red={red}, blue={blue} and green={green}')
 
     try:
         logger.debug(parameter_string)
-        led.set_ryb(red=int(red), blue=int(blue), green=int(green))
+        # led.set_ryb(red=int(red), blue=int(blue), green=int(green))
+        led.set_rgb(rgb=rgb)
         response = make_response("sucess: " + parameter_string)
         response.status_code = 200
         return response

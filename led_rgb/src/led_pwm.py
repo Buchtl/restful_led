@@ -38,11 +38,26 @@ class LedPwm:
     Set RYB values use percentage 0-100
     """
 
-    def set_ryb(self, red: int, blue: int, green: int):
-        self.logger.debug(f'set ryb red={red}, yellow={yellow} and blue={blue}')
-        self.value_red = red % self.PWM_MODULO
-        self.value_blue = blue % self.PWM_MODULO
-        self.value_green = green % self.PWM_MODULO
+    #def set_ryb(self, red: int, blue: int, green: int):
+    #    self.logger.debug(f'set ryb red={red}, yellow={yellow} and blue={blue}')
+    #    self.value_red = red % self.PWM_MODULO
+    #    self.value_blue = blue % self.PWM_MODULO
+    #    self.value_green = green % self.PWM_MODULO
+    #    self.logger.debug(f'SELF red={self.value_red}, blue={self.value_blue} and green={self.value_green}')
+    #    self.gpio_red.start(self.value_red)
+    #    self.gpio_yellow.start(self.value_blue)
+    #    self.gpio_blue.start(self.value_green)
+
+    """
+    Set RGB values use percentage 0-100
+    """
+
+    def set_rgb(self, rgb: str):
+        rgb_int = int(rgb.replace("#", "0x"), 16)
+        self.logger.debug(f'set rgb {rgb}')
+        self.value_red = ((rgb_int >> 4) & 0xFF) % self.PWM_MODULO
+        self.value_blue = ((rgb_int >> 2) & 0xFF) % self.PWM_MODULO
+        self.value_green = (rgb_int & 0xFF) % self.PWM_MODULO
         self.logger.debug(f'SELF red={self.value_red}, blue={self.value_blue} and green={self.value_green}')
         self.gpio_red.start(self.value_red)
         self.gpio_yellow.start(self.value_blue)
