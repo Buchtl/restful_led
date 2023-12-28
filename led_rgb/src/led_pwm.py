@@ -29,10 +29,10 @@ class LedPwm:
         self.gpio_red = gpio.PWM(self.PWM_PIN_RED, frequenzy)
 
         gpio.setup(self.PWM_PIN_BLUE, gpio.OUT)
-        self.gpio_yellow = gpio.PWM(self.PWM_PIN_BLUE, frequenzy)
+        self.gpio_blue = gpio.PWM(self.PWM_PIN_BLUE, frequenzy)
 
         gpio.setup(self.PWM_PIN_GREEN, gpio.OUT)
-        self.gpio_blue = gpio.PWM(self.PWM_PIN_GREEN, frequenzy)
+        self.gpio_green = gpio.PWM(self.PWM_PIN_GREEN, frequenzy)
 
     """
     Set RYB values use percentage 0-100
@@ -59,8 +59,8 @@ class LedPwm:
         self.value_green = int("0x" + rgb[4:5], 16) % self.PWM_MODULO
         self.logger.debug(f'SELF red={self.value_red}, blue={self.value_blue} and green={self.value_green}')
         self.gpio_red.start(self.value_red)
-        self.gpio_yellow.start(self.value_blue)
-        self.gpio_blue.start(self.value_green)
+        self.gpio_blue.start(self.value_blue)
+        self.gpio_green.start(self.value_green)
 
     """
     increase all colors by value
