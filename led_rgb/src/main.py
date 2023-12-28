@@ -44,7 +44,7 @@ def process_rgb():
 
 if __name__ == "__main__":
     led = LedPwm()
-    led.set_rgb("0xFFFFFF")
+    led.set_rgb("FFFFFF")
     #led.set_ryb(red=0, blue=0, green=0)
     # time.sleep(1)
     # for x in range(0,4):
