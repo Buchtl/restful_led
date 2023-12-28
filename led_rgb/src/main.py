@@ -27,7 +27,7 @@ def process_rgb():
     # green = request.args.get('green', "0")
     rgb = "0x" + request.args.get('rgb', "000000")
 
-    parameter_string = (f'given red={red}, blue={blue} and green={green}')
+    parameter_string = f'given rgb={rgb}'
 
     try:
         logger.debug(parameter_string)
@@ -44,7 +44,8 @@ def process_rgb():
 
 if __name__ == "__main__":
     led = LedPwm()
-    led.set_ryb(red=0, blue=0, green=0)
+    led.set_rgb("0xFFFFFF")
+    #led.set_ryb(red=0, blue=0, green=0)
     # time.sleep(1)
     # for x in range(0,4):
     #    led.increase_all_by(20)
