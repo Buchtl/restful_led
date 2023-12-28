@@ -18,6 +18,7 @@ def duty_cycle_to_hex(dc: int):
 
 
 class LedPwm:
+    rgb_current: "000000"
     gpio_red: any
     gpio_blue: any
     gpio_green: any
@@ -64,7 +65,7 @@ class LedPwm:
     """
 
     def set_rgb(self, rgb: str):
-        v = "0x" + rgb[0:2]
+        self.rgb_current = rgb
         self.logger.debug(f'set rgb {rgb}')
         self.value_red = int("0x" + rgb[0:2], 16) % self.PWM_MODULO
         self.value_blue = int("0x" + rgb[2:4], 16) % self.PWM_MODULO
@@ -79,10 +80,11 @@ class LedPwm:
     """
 
     def get_rgb(self):
-        dc_red = duty_cycle_to_hex(self.gpio_red.get_duty_cycle())
-        dc_blue = duty_cycle_to_hex(self.gpio_blue.get_duty_cycle())
-        dc_green = duty_cycle_to_hex(self.gpio_green.get_duty_cycle())
-        return "0x" + dc_red + dc_blue + dc_green
+        #dc_red = duty_cycle_to_hex(self.gpio_red.get_duty_cycle())
+        #dc_blue = duty_cycle_to_hex(self.gpio_blue.get_duty_cycle())
+        #dc_green = duty_cycle_to_hex(self.gpio_green.get_duty_cycle())
+        #return "0x" + dc_red + dc_blue + dc_green
+        return "0x" + self.rgb_current
 
     """
     increase all colors by value
