@@ -35,7 +35,7 @@ const ColorPicker: React.FC<ColorPickerProps> = (props) => {
         fetch(URL_RGB + "/" + plain_hex).then(r => console.log(r.statusText))
     }
 
-    return (<div><SketchPicker color={color.hex} onChange={handleColor}/></div>);
+    return (<div><SketchPicker width='300px'  color={color.hex} onChange={handleColor}/></div>);
 };
 
 export default ColorPicker;
