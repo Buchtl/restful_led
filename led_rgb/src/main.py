@@ -1,5 +1,5 @@
 from led_pwm import LedPwm
-from flask import Flask, request, make_response
+from flask import Flask, make_response
 from flask_cors import CORS, cross_origin
 import sys
 import logging
@@ -22,10 +22,6 @@ logger.addHandler(handler)
 @app.route('/rgb/<rgb>')
 @cross_origin()
 def process_rgb(rgb):
-    # red = request.args.get('red', "0")
-    # blue = request.args.get('blue', "0")
-    # green = request.args.get('green', "0")
-    #rgb = request.args.get('rgb', "000000")
     while len(rgb) < 6:
         rgb = "0" + rgb
 
@@ -33,7 +29,6 @@ def process_rgb(rgb):
 
     try:
         logger.debug(parameter_string)
-        # led.set_ryb(red=int(red), blue=int(blue), green=int(green))
         led.set_rgb(rgb=rgb)
         response = make_response("sucess: " + parameter_string)
         response.status_code = 200
@@ -54,12 +49,6 @@ def get_rgb():
 
 if __name__ == "__main__":
     led = LedPwm()
-    led.set_rgb("FFFFFF")
-    # led.set_ryb(red=0, blue=0, green=0)
-    # time.sleep(1)
-    # for x in range(0,4):
-    #    led.increase_all_by(20)
-    #    time.sleep(1)
-    # led.cleanup()
+    led.set_rgb("000000")
 
     app.run(host='0.0.0.0', port=8080)

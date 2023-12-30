@@ -34,31 +34,18 @@ class LedPwm:
     def __init__(self):
         gpio.setwarnings(False)
         gpio.cleanup()
-        frequenzy = 50
+        frequency = 50
         gpio.setmode(gpio.BCM)
 
         gpio.setup(self.PWM_PIN_RED, gpio.OUT)
-        self.gpio_red = gpio.PWM(self.PWM_PIN_RED, frequenzy)
+        self.gpio_red = gpio.PWM(self.PWM_PIN_RED, frequency)
 
         gpio.setup(self.PWM_PIN_BLUE, gpio.OUT)
-        self.gpio_blue = gpio.PWM(self.PWM_PIN_BLUE, frequenzy)
+        self.gpio_blue = gpio.PWM(self.PWM_PIN_BLUE, frequency)
 
         gpio.setup(self.PWM_PIN_GREEN, gpio.OUT)
-        self.gpio_green = gpio.PWM(self.PWM_PIN_GREEN, frequenzy)
+        self.gpio_green = gpio.PWM(self.PWM_PIN_GREEN, frequency)
 
-    """
-    Set RYB values use percentage 0-100
-    """
-
-    # def set_ryb(self, red: int, blue: int, green: int):
-    #    self.logger.debug(f'set ryb red={red}, yellow={yellow} and blue={blue}')
-    #    self.value_red = red % self.PWM_MODULO
-    #    self.value_blue = blue % self.PWM_MODULO
-    #    self.value_green = green % self.PWM_MODULO
-    #    self.logger.debug(f'SELF red={self.value_red}, blue={self.value_blue} and green={self.value_green}')
-    #    self.gpio_red.start(self.value_red)
-    #    self.gpio_yellow.start(self.value_blue)
-    #    self.gpio_blue.start(self.value_green)
 
     """
     Set RGB values use percentage 0-100
@@ -80,10 +67,6 @@ class LedPwm:
     """
 
     def get_rgb(self):
-        #dc_red = duty_cycle_to_hex(self.gpio_red.get_duty_cycle())
-        #dc_blue = duty_cycle_to_hex(self.gpio_blue.get_duty_cycle())
-        #dc_green = duty_cycle_to_hex(self.gpio_green.get_duty_cycle())
-        #return "0x" + dc_red + dc_blue + dc_green
         return "0x" + self.rgb_current
 
     """
@@ -94,7 +77,6 @@ class LedPwm:
         self.value_red = (self.value_red + value) % self.PWM_MODULO
         self.value_blue = (self.value_blue + value) % self.PWM_MODULO
         self.value_green = (self.value_green + value) % self.PWM_MODULO
-        # self.set_ryb(red=self.value_red, blue=self.value_blue, green=self.value_green)
 
     def cleanup(self):
         self.gpio_red.stop()
