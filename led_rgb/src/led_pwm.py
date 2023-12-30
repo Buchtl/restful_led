@@ -1,4 +1,7 @@
-import RPi.GPIO as gpio
+try:
+    import RPi.GPIO as gpio
+except ImportError:
+    import mock_mock as gpio
 import logging
 
 
