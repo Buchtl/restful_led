@@ -1,3 +1,5 @@
+import time
+
 from led_pwm import LedPwm
 from flask import Flask, make_response, request
 from flask_cors import CORS, cross_origin
@@ -24,7 +26,9 @@ class Api:
     logger.addHandler(handler)
 
     def shutdown_server(self):
-        self.logger.info("Shutting down server...")
+        time_to_kill = 2
+        self.logger.info(f"Shutting down server in {time_to_kill} seconds...")
+        time.sleep(time_to_kill)
         self.logger.info(f'shutting down pid {os.getpid()}')
         os.kill(os.getpid(), signal.SIGINT)
 
