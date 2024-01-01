@@ -34,11 +34,14 @@ class LedPwm:
     PWM_MODULO = 101
     logger = get_logger()
 
-    def __init__(self):
+    def __init__(self, pwm_pin_red=12, pwm_pin_blue=13, pwm_pin_green=18, frequency=50):
         gpio.setwarnings(False)
         gpio.cleanup()
-        frequency = 50
         gpio.setmode(gpio.BCM)
+
+        self.PWM_PIN_RED = pwm_pin_red
+        self.PWM_PIN_BLUE = pwm_pin_blue
+        self.PWM_PIN_GREEN = pwm_pin_green
 
         gpio.setup(self.PWM_PIN_RED, gpio.OUT)
         self.gpio_red = gpio.PWM(self.PWM_PIN_RED, frequency)
