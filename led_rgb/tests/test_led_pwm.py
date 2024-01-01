@@ -4,10 +4,13 @@ from led_rgb.src.led_pwm import LedPwm
 
 
 class TestStringMethods(unittest.TestCase):
+    subject: LedPwm
+
+    def setUp(self):
+        self.subject = LedPwm()
 
     def test_current_rgb(self):
-        subject = LedPwm()
-        self.assertEqual('0x000000', subject.get_rgb())
+        self.assertEqual('0x000000', self.subject.get_rgb())
 
 
 if __name__ == '__main__':
