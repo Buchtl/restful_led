@@ -3,11 +3,12 @@ from flask import Flask, make_response, request
 from flask_cors import CORS, cross_origin
 import sys
 import logging
-from werkzeug.serving import run_simple
-from werkzeug._internal import _log
+import os
+import signal
+import threading
+
 
 class Api:
-
     app = Flask(__name__)
     cors = CORS(app)
     app.config['CORS_HEADERS'] = 'Content-Type'
@@ -21,6 +22,11 @@ class Api:
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
+
+    def shutdown_server(self):
+        self.logger.info("Shutting down server...")
+        self.logger.info(f'shutting down pid {os.getpid()}')
+        os.kill(os.getpid(), signal.SIGINT)
 
     def __init__(self, name='flask_app', debug=True):
         self.logger.debug("init api")
@@ -51,7 +57,6 @@ class Api:
                 response.status_code = 400
                 return response
 
-
         @self.app.route('/rgb')
         @cross_origin()
         def get_rgb():
@@ -59,17 +64,13 @@ class Api:
             response.status_code = 200
             return response
 
-
         @self.app.route('/shutdown')
         def shutdown_server():
-            _log('info', 'Shutting down: %s', 'Flask app')
-            request.environ.get('werkzeug.server.shutdown')()
-            return 'Server shutting down...'
+            shutdown_thread = threading.Thread(target=self.shutdown_server)
+            shutdown_thread.start()
+            return 'Shutting down...'
+
 
 if __name__ == "__main__":
-    #led = LedPwm()
-    #led.set_rgb("000000")
-
     api = Api()
-
     api.app.run(host='0.0.0.0', port=8080)
