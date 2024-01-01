@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ColorResult, SketchPicker} from 'react-color'
 
-const URL_BASE = 'http://pi4b:8080'
+const URL_BASE = process.env.REACT_APP_BASE_URL;
 const URL_RGB = URL_BASE + "/rgb"
 
 interface ColorPickerProps {
