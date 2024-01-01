@@ -21,7 +21,7 @@ def duty_cycle_to_hex(dc: int):
 
 
 class LedPwm:
-    rgb_current: "000000"
+    rgb_current = "000000"
     gpio_red: any
     gpio_blue: any
     gpio_green: any
