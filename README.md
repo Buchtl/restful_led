@@ -7,4 +7,4 @@ Controlling a rgb-led that is connected to a raspberry pi by a browser applicati
 * REST-API is provided via flask
 
 ## Web-Frontend
-* REAC-APP using TypeScript
+* REACT-APP using TypeScript
