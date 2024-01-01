@@ -71,6 +71,10 @@ class Api:
             return 'Shutting down...'
 
 
-if __name__ == "__main__":
+def start_api():
     api = Api()
     api.app.run(host='0.0.0.0', port=8080)
+
+
+if __name__ == "__main__":
+    start_api()
