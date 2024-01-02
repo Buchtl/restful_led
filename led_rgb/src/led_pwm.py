@@ -72,8 +72,8 @@ class LedPwm:
     get approx RGB-values that are currently mapped to the gpio pins with leading "0x"
     """
 
-    def get_rgb(self):
-        return "0x" + self.rgb_current
+    def get_rgb(self) -> str:
+        return str(self.rgb_current)
 
     """
     increase all colors by value

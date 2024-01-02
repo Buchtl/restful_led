@@ -67,7 +67,7 @@ class Api:
             try:
                 self.logger.debug(parameter_string)
                 self.led.set_rgb(rgb=rgb)
-                response = make_response("sucess: " + parameter_string)
+                response = make_response(self.led.get_rgb())
                 response.status_code = 200
                 return response
             except:

@@ -26,7 +26,11 @@ class TestStringMethods(unittest.TestCase):
 
     def test_current_rgb(self):
         actual = requests.get(self.URL_RGB).text
-        self.assertEqual('0x000000', actual)
+        self.assertEqual('000000', actual)
+
+    def test_set_rgb(self):
+        actual = requests.get(self.URL_RGB + "/FF00FF").text
+        self.assertEqual('FF00FF', actual)
 
 
 if __name__ == '__main__':
