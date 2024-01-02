@@ -1,7 +1,7 @@
 import time
 
 from led_pwm import LedPwm
-from flask import Flask, make_response, request
+from flask import Flask, make_response
 from flask_cors import CORS, cross_origin
 import sys
 import logging
