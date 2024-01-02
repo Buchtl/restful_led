@@ -10,7 +10,7 @@ class TestStringMethods(unittest.TestCase):
         self.subject = LedPwm()
 
     def test_current_rgb(self):
-        self.assertEqual('0x000000', self.subject.get_rgb())
+        self.assertEqual('000000', self.subject.get_rgb())
 
 
 if __name__ == '__main__':
