@@ -46,6 +46,19 @@ class Api:
         @self.app.route('/rgb/<rgb>')
         @cross_origin()
         def process_rgb(rgb):
+            """
+            Set RGB value
+
+            Example Request:
+            GET /rgb/00FF00
+
+            Returns:
+            - HTTP Status Code: 200 OK (Data processed successfully)
+
+            OR
+            - HTTP Status Code: 200 OK (RGB set)
+            - HTTP Status Code:  Internal Server Error (Error processing)
+            """
             while len(rgb) < 6:
                 rgb = "0" + rgb
 
@@ -59,12 +72,22 @@ class Api:
                 return response
             except:
                 response = make_response("Error processing: " + parameter_string)
-                response.status_code = 400
+                response.status_code = 500
                 return response
 
         @self.app.route('/rgb')
         @cross_origin()
         def get_rgb():
+            """
+            Get current RGB value
+
+            Example Request:
+            GET /rgb
+
+            Returns:
+            - HTTP Status Code: 200 OK (RGB set)
+            - Plain Text: "000000"
+            """
             response = make_response(self.led.get_rgb())
             response.status_code = 200
             return response
