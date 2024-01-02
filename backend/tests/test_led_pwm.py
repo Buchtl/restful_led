@@ -1,6 +1,6 @@
 import unittest
-import led_rgb.tests.context
-from led_rgb.src.led_pwm import LedPwm
+import backend.tests.context
+from backend.src.led_pwm import LedPwm
 
 
 class TestStringMethods(unittest.TestCase):

@@ -1,13 +1,10 @@
 import subprocess
-import threading
 import time
 import unittest
-
 import requests
 
 
 class TestStringMethods(unittest.TestCase):
-    thread_api: threading.Thread
     URL_BASE = "http://localhost:8080"
     URL_RGB = URL_BASE + "/rgb"
     URL_SHUTDOWN = URL_BASE + "/shutdown"

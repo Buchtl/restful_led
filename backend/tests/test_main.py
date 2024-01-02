@@ -1,6 +1,6 @@
 import unittest
 import context
-import led_rgb.src.main as subject
+import backend.src.main as subject
 
 
 class TestStringMethods(unittest.TestCase):

@@ -1,4 +1,4 @@
-# led_rgb
+# restful_led
 
 Controlling a rgb-led that is connected to a raspberry pi by a browser application
 

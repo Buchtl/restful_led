@@ -1,5 +1,5 @@
 #!/bin/bash
 
 . venv/bin/activate
-python3 led_rgb/src/main.py
+python3 backend/src/main.py
 
