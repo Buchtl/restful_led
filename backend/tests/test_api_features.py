@@ -11,7 +11,7 @@ class TestStringMethods(unittest.TestCase):
     process: subprocess.Popen
 
     def setUp(self):
-        cwd = "../../"
+        cwd = "../"
         cmd = "./run.sh"
         self.process = subprocess.Popen(cmd, cwd=cwd)
         # give server time to start
