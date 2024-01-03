@@ -1,7 +1,7 @@
 try:
-    import RPi.GPIO as gpio
+    import RPi.GPIO as GPIO
 except ImportError:
-    import mock_mock as gpio
+    import backend.tests.MOCK_GPIO as GPIO
 import logging
 
 
@@ -35,23 +35,22 @@ class LedPwm:
     logger = get_logger()
 
     def __init__(self, pwm_pin_red=12, pwm_pin_blue=13, pwm_pin_green=18, frequency=50):
-        gpio.setwarnings(False)
-        gpio.cleanup()
-        gpio.setmode(gpio.BCM)
+        GPIO.setwarnings(False)
+        GPIO.cleanup()
+        GPIO.setmode(GPIO.BCM)
 
         self.PWM_PIN_RED = pwm_pin_red
         self.PWM_PIN_BLUE = pwm_pin_blue
         self.PWM_PIN_GREEN = pwm_pin_green
 
-        gpio.setup(self.PWM_PIN_RED, gpio.OUT)
-        self.gpio_red = gpio.PWM(self.PWM_PIN_RED, frequency)
+        GPIO.setup(self.PWM_PIN_RED, GPIO.OUT)
+        self.gpio_red = GPIO.PWM(self.PWM_PIN_RED, frequency)
 
-        gpio.setup(self.PWM_PIN_BLUE, gpio.OUT)
-        self.gpio_blue = gpio.PWM(self.PWM_PIN_BLUE, frequency)
+        GPIO.setup(self.PWM_PIN_BLUE, GPIO.OUT)
+        self.gpio_blue = GPIO.PWM(self.PWM_PIN_BLUE, frequency)
 
-        gpio.setup(self.PWM_PIN_GREEN, gpio.OUT)
-        self.gpio_green = gpio.PWM(self.PWM_PIN_GREEN, frequency)
-
+        GPIO.setup(self.PWM_PIN_GREEN, GPIO.OUT)
+        self.gpio_green = GPIO.PWM(self.PWM_PIN_GREEN, frequency)
 
     """
     Set RGB values use percentage 0-100
@@ -88,4 +87,4 @@ class LedPwm:
         self.gpio_red.stop()
         self.gpio_blue.stop()
         self.gpio_green.stop()
-        gpio.cleanup()
+        GPIO.cleanup()

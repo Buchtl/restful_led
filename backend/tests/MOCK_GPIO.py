@@ -1,6 +1,6 @@
 import logging
 
-from mock_pwm import Pwm
+from backend.tests.mock_pwm import Pwm
 
 logger = logging.getLogger()
 
