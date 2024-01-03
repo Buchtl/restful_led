@@ -1,5 +1,4 @@
 import unittest
-import backend.tests.context
 from backend.src.led_pwm import LedPwm
 
 

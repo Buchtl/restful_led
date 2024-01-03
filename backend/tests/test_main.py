@@ -1,6 +1,4 @@
 import unittest
-import context
-import backend.src.main as subject
 
 
 class TestStringMethods(unittest.TestCase):
