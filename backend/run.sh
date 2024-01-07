@@ -1,5 +1,8 @@
 #!/bin/bash
 
 . venv/bin/activate
-python3 ./src/main.py
+pushd src
+./main.py
+popd
+
 

@@ -1,9 +1,8 @@
 try:
     import RPi.GPIO as GPIO
-except ImportError:
-    import backend.tests.MOCK_GPIO as GPIO
+except:
+    import tests.MOCK_GPIO as GPIO
 import logging
-
 
 def get_logger():
     return logging.getLogger()
